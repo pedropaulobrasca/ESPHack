@@ -19,6 +19,12 @@
     <Filter Include="Mem">
       <UniqueIdentifier>{0007f953-6b80-471d-b5c5-19855561e917}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Offsets">
+      <UniqueIdentifier>{e1dcd1a1-2c3f-4f67-87e2-229f67ac032f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Init">
+      <UniqueIdentifier>{7fab2458-3127-483c-85d2-ebc9a83c7a11}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="framework.h">
@@ -33,6 +39,12 @@
     <ClInclude Include="mem.h">
       <Filter>Mem</Filter>
     </ClInclude>
+    <ClInclude Include="offsets.h">
+      <Filter>Offsets</Filter>
+    </ClInclude>
+    <ClInclude Include="init.h">
+      <Filter>Init</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="dllmain.cpp">
@@ -46,6 +58,12 @@
     </ClCompile>
     <ClCompile Include="mem.cpp">
       <Filter>Mem</Filter>
+    </ClCompile>
+    <ClCompile Include="offsets.cpp">
+      <Filter>Offsets</Filter>
+    </ClCompile>
+    <ClCompile Include="init.cpp">
+      <Filter>Init</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

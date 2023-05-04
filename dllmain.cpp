@@ -57,24 +57,37 @@ BOOL __stdcall hkwglSwapBuffers(HDC hDc)
 	return wglSwapBuffersGateway(hDc);
 }
 
-DWORD WINAPI HackThread(HMODULE hModule)
+DWORD __stdcall HackThread(LPVOID param)
 {
-	AllocConsole();
-	FILE* f;
-	freopen_s(&f, "CONOUT$", "w", stdout);
 
-	std::cout << "OG for a fee, stay sippin' fam\n";
+	//Shhhhhhh below is used for testing purposes only ;)
+	/*AllocConsole();
+	FILE* f;
+	freopen_s(&f, "CONOUT$", "w", stdout);*/
 
 	Hook SwapBuffersHook("wglSwapBuffers", "opengl32.dll", (BYTE*)hkwglSwapBuffers, (BYTE*)&wglSwapBuffersGateway, 5);
-	SwapBuffersHook.Enable();
 
-	Sleep(15000);
-	SwapBuffersHook.Disable();
+	SwapBuffersHook.Enable(); //Enables our hook
 
-	fclose(f);
-	FreeConsole();
-	FreeLibraryAndExitThread(hModule, 0);
-	return 0;
+	while (1) //Infinite loop
+	{
+		if (GetAsyncKeyState(VK_DELETE) & 1) //Checks if we want to exit the hack entirely
+		{
+			break;
+		}
+	}
+
+	SwapBuffersHook.Disable(); //Disables our hook
+
+	//menu.Shutdown(); //Unloads our menu
+
+	MessageBeep(MB_OK); //Lets user know that hack was closed
+	Sleep(100); //Gives menu time to hurry up and close properly
+
+	//fclose(f); Also used for testing ;)
+	//FreeConsole(); Testing again ;)
+
+	FreeLibraryAndExitThread((HMODULE)param, 0); //Finally we unload the DLL
 }
 
 BOOL APIENTRY DllMain(HMODULE hModule, DWORD  ul_reason_for_call, LPVOID lpReserved)
@@ -82,7 +95,8 @@ BOOL APIENTRY DllMain(HMODULE hModule, DWORD  ul_reason_for_call, LPVOID lpReser
 	switch (ul_reason_for_call)
 	{
 	case DLL_PROCESS_ATTACH:
-		CloseHandle(CreateThread(nullptr, 0, (LPTHREAD_START_ROUTINE)HackThread, hModule, 0, nullptr));
+		CreateThread(NULL, 0, HackThread, hModule, NULL, NULL);
+		DisableThreadLibraryCalls(hModule);
 	case DLL_THREAD_ATTACH:
 	case DLL_THREAD_DETACH:
 	case DLL_PROCESS_DETACH:
