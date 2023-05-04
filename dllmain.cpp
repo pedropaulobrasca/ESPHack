@@ -34,6 +34,11 @@ BOOL __stdcall hkwglSwapBuffers(HDC hDc)
 		}
 	}
 
+	if (GetAsyncKeyState(VK_DELETE) & 1)
+	{
+		return wglSwapBuffersGateway(hDc);
+	}
+
 	uintptr_t* localPlayerPtr = (uintptr_t*)(moduleBase + 0x10F4F4);
 
 	if (*localPlayerPtr)
