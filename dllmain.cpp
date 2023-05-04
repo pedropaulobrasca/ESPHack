@@ -2,8 +2,6 @@
 
 uintptr_t moduleBase = (uintptr_t)GetModuleHandle("ac_client.exe");
 
-bool bHealth = false, bAmmo = false, bRecoil = false;
-
 typedef BOOL(__stdcall* twglSwapBuffers) (HDC hDc);
 
 twglSwapBuffers owglSwapBuffers;
@@ -12,18 +10,18 @@ twglSwapBuffers wglSwapBuffersGateway;
 BOOL __stdcall hkwglSwapBuffers(HDC hDc)
 {
 	if (GetAsyncKeyState(VK_F1) & 1)
-		bHealth = !bHealth;
+		Config::bHealth = !Config::bHealth;
 
 	if (GetAsyncKeyState(VK_F2) & 1)
 	{
-		bAmmo = !bAmmo;
+		Config::bAmmo = !Config::bAmmo;
 	}
 
 	if (GetAsyncKeyState(VK_F3) & 1)
 	{
-		bRecoil = !bRecoil;
+		Config::bRecoilSpread = !Config::bRecoilSpread;
 
-		if (bRecoil)
+		if (Config::bRecoilSpread)
 		{
 			mem::Nop((BYTE*)(moduleBase + 0x63786), 10);
 		}
@@ -43,12 +41,12 @@ BOOL __stdcall hkwglSwapBuffers(HDC hDc)
 
 	if (*localPlayerPtr)
 	{
-		if (bHealth)
+		if (Config::bHealth)
 		{
 			*(int*)(*localPlayerPtr + 0xF8) = 1337;
 		}
 
-		if (bAmmo)
+		if (Config::bAmmo)
 		{
 			*(int*)mem::FindDMAAddy(moduleBase + 0x10F4F4, { 0x374, 0x14, 0x0 }) = 1337;
 		}

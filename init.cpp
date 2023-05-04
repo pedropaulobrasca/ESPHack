@@ -22,13 +22,13 @@ Init::Init()
 void Init::DoHacks()
 {
 	//Health
-	//doHealth();
+	doHealth();
 
-	////Ammo
-	//doAmmo();
+	//Ammo
+	doAmmo();
 
-	////Recoil/Spread
-	//doRecoilSpread();
+	//Recoil/Spread
+	doRecoilSpread();
 
 	////Auto
 	//doAuto();

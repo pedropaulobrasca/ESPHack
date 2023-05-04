@@ -6,3 +6,6 @@
 #include <iostream>
 #include "hook.h"
 #include "mem.h"
+#include "offsets.h"
+#include "hack.h"
+#include "config.h"

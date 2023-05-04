@@ -25,6 +25,12 @@
     <Filter Include="Init">
       <UniqueIdentifier>{7fab2458-3127-483c-85d2-ebc9a83c7a11}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Hack">
+      <UniqueIdentifier>{0a900004-b278-460e-b2f7-7131226a86f5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Config">
+      <UniqueIdentifier>{9d74e6fd-70ba-44f1-9de3-989e0a475fd8}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="framework.h">
@@ -45,6 +51,12 @@
     <ClInclude Include="init.h">
       <Filter>Init</Filter>
     </ClInclude>
+    <ClInclude Include="hack.h">
+      <Filter>Hack</Filter>
+    </ClInclude>
+    <ClInclude Include="config.h">
+      <Filter>Config</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="dllmain.cpp">
@@ -64,6 +76,12 @@
     </ClCompile>
     <ClCompile Include="init.cpp">
       <Filter>Init</Filter>
+    </ClCompile>
+    <ClCompile Include="hack.cpp">
+      <Filter>Hack</Filter>
+    </ClCompile>
+    <ClCompile Include="config.cpp">
+      <Filter>Config</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
