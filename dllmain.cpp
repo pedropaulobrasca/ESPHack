@@ -1,56 +1,32 @@
 #include "pch.h"
 
-uintptr_t moduleBase = (uintptr_t)GetModuleHandle("ac_client.exe");
+Init init;
 
 typedef BOOL(__stdcall* twglSwapBuffers) (HDC hDc);
 
-twglSwapBuffers owglSwapBuffers;
 twglSwapBuffers wglSwapBuffersGateway;
 
 BOOL __stdcall hkwglSwapBuffers(HDC hDc)
 {
 	if (GetAsyncKeyState(VK_F1) & 1)
+	{
 		Config::bHealth = !Config::bHealth;
+		std::cout << "Health ativado!" << std::endl;
+	}
 
 	if (GetAsyncKeyState(VK_F2) & 1)
 	{
 		Config::bAmmo = !Config::bAmmo;
+		std::cout << "Ammo ativado!" << std::endl;
 	}
 
 	if (GetAsyncKeyState(VK_F3) & 1)
 	{
 		Config::bRecoilSpread = !Config::bRecoilSpread;
-
-		if (Config::bRecoilSpread)
-		{
-			mem::Nop((BYTE*)(moduleBase + 0x63786), 10);
-		}
-
-		else
-		{
-			mem::Patch((BYTE*)(moduleBase + 0x63786), (BYTE*)"\x50\x8D\x4C\x24\x1C\x51\x8B\xCE\xFF\xD2", 10);
-		}
+		std::cout << "noRecoil ativado!" << std::endl;
 	}
 
-	if (GetAsyncKeyState(VK_DELETE) & 1)
-	{
-		return wglSwapBuffersGateway(hDc);
-	}
-
-	uintptr_t* localPlayerPtr = (uintptr_t*)(moduleBase + 0x10F4F4);
-
-	if (*localPlayerPtr)
-	{
-		if (Config::bHealth)
-		{
-			*(int*)(*localPlayerPtr + 0xF8) = 1337;
-		}
-
-		if (Config::bAmmo)
-		{
-			*(int*)mem::FindDMAAddy(moduleBase + 0x10F4F4, { 0x374, 0x14, 0x0 }) = 1337;
-		}
-	}
+	init.DoHacks();
 
 	return wglSwapBuffersGateway(hDc);
 }
@@ -58,34 +34,31 @@ BOOL __stdcall hkwglSwapBuffers(HDC hDc)
 DWORD __stdcall HackThread(LPVOID param)
 {
 
-	//Shhhhhhh below is used for testing purposes only ;)
-	/*AllocConsole();
+	AllocConsole();
 	FILE* f;
-	freopen_s(&f, "CONOUT$", "w", stdout);*/
+	freopen_s(&f, "CONOUT$", "w", stdout);
 
 	Hook SwapBuffersHook("wglSwapBuffers", "opengl32.dll", (BYTE*)hkwglSwapBuffers, (BYTE*)&wglSwapBuffersGateway, 5);
 
-	SwapBuffersHook.Enable(); //Enables our hook
+	SwapBuffersHook.Enable();
 
-	while (1) //Infinite loop
+	while (1)
 	{
-		if (GetAsyncKeyState(VK_DELETE) & 1) //Checks if we want to exit the hack entirely
+		if (GetAsyncKeyState(VK_DELETE) & 1)
 		{
 			break;
 		}
 	}
 
-	SwapBuffersHook.Disable(); //Disables our hook
+	SwapBuffersHook.Disable();
 
-	//menu.Shutdown(); //Unloads our menu
+	MessageBeep(MB_OK);
+	Sleep(100);
 
-	MessageBeep(MB_OK); //Lets user know that hack was closed
-	Sleep(100); //Gives menu time to hurry up and close properly
+	fclose(f);
+	FreeConsole();
 
-	//fclose(f); Also used for testing ;)
-	//FreeConsole(); Testing again ;)
-
-	FreeLibraryAndExitThread((HMODULE)param, 0); //Finally we unload the DLL
+	FreeLibraryAndExitThread((HMODULE)param, 0);
 }
 
 BOOL APIENTRY DllMain(HMODULE hModule, DWORD  ul_reason_for_call, LPVOID lpReserved)

@@ -2,14 +2,20 @@
 
 void doHealth()
 {
-	Offsets::localPlayer->Armor = Config::armor;
-	Offsets::localPlayer->Health = Config::health;
+	if (Config::bHealth)
+	{
+		Offsets::localPlayer->Armor = Config::armor;
+		Offsets::localPlayer->Health = Config::health;
+	}
 }
 
 void doAmmo()
 {
-	*(int*)Offsets::localPlayer->CurrentWeaponPtr->Ammo = Config::ammo;
-	*(int*)Offsets::localPlayer->CurrentWeaponPtr->Mag = Config::mag;
+	if (Config::bAmmo)
+	{
+		*(int*)Offsets::localPlayer->CurrentWeaponPtr->Ammo = Config::ammo;
+		*(int*)Offsets::localPlayer->CurrentWeaponPtr->Mag = Config::mag;
+	}
 }
 
 //Prevents recoil and spread(More info can be found at the start here guide)

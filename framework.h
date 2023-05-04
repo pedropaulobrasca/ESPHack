@@ -9,3 +9,4 @@
 #include "offsets.h"
 #include "hack.h"
 #include "config.h"
+#include "init.h"
