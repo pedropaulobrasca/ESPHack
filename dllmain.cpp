@@ -8,6 +8,8 @@ twglSwapBuffers wglSwapBuffersGateway;
 
 BOOL __stdcall hkwglSwapBuffers(HDC hDc)
 {
+	Offsets::entList = *(EntList**)Offsets::entityListAddr;
+
 	if (GetAsyncKeyState(VK_F1) & 1)
 	{
 		Config::bHealth = !Config::bHealth;

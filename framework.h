@@ -16,3 +16,4 @@
 #include "config.h"
 #include "init.h"
 #include "drawing.h"
+#include "helpers.h"

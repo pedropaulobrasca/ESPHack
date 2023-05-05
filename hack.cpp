@@ -34,6 +34,29 @@ void doESP()
 {
 	if (Config::bESP)
 	{
-		Draw::DrawLine(Draw::GetRes().x / 2, Draw::GetRes().y, 3.0f, 3.0f, 2.0f, rgb::red, 1.0f);
+		Vector2 screenRes = Draw::GetRes();
+
+		for (int i = 0; i < *Offsets::numOfPlayers; i++)
+		{
+			Entity* entity = Offsets::entList->ents[i];
+			if (entity != 0)
+			{
+				try
+				{
+					Vector3 center = entity->HeadPos;
+					char* name = entity->Name;
+
+					Vector2 screenPos;
+					if (WorldToScreen(center, screenPos, Offsets::vMatix, (int)screenRes.x, (int)screenRes.y))
+					{
+						Draw::DrawLine(screenRes.x / 2, screenRes.y, screenPos.x, screenPos.y, 2.0f, rgb::red, 1.0f);
+					}
+				}
+				catch (const std::exception&)
+				{
+					std::cout << "Erro no ESP!" << std::endl;
+				}
+			}
+		}
 	}
 }
