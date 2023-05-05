@@ -7,3 +7,4 @@ int Config::ammo = 1337;
 int Config::mag = 1337;
 bool Config::bAmmo = false;
 bool Config::bRecoilSpread = false;
+bool Config::bESP = false;

@@ -26,6 +26,12 @@ BOOL __stdcall hkwglSwapBuffers(HDC hDc)
 		std::cout << "noRecoil ativado!" << std::endl;
 	}
 
+	if (GetAsyncKeyState(VK_F4) & 1)
+	{
+		Config::bESP = !Config::bESP;
+		std::cout << "ESP ativado!" << std::endl;
+	}
+
 	init.DoHacks();
 
 	return wglSwapBuffersGateway(hDc);

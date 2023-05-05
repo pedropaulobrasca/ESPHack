@@ -142,7 +142,9 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="config.h" />
+    <ClInclude Include="drawing.h" />
     <ClInclude Include="hack.h" />
+    <ClInclude Include="helpers.h" />
     <ClInclude Include="init.h" />
     <ClInclude Include="offsets.h" />
     <ClInclude Include="framework.h" />
@@ -153,7 +155,9 @@
   <ItemGroup>
     <ClCompile Include="config.cpp" />
     <ClCompile Include="dllmain.cpp" />
+    <ClCompile Include="drawing.cpp" />
     <ClCompile Include="hack.cpp" />
+    <ClCompile Include="helpers.cpp" />
     <ClCompile Include="hook.cpp" />
     <ClCompile Include="init.cpp" />
     <ClCompile Include="mem.cpp" />

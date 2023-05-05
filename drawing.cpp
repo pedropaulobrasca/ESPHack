@@ -1,0 +1,40 @@
+#define _USE_MATH_DEFINES
+#include "pch.h"
+
+class Draw::Font f;
+
+Vector2 Draw::GetRes()
+{
+	Vector2 screenResolution;
+
+	float viewport[4] = { 0 };
+	glGetFloatv(GL_VIEWPORT, viewport);
+
+	screenResolution.x = viewport[2];
+	screenResolution.y = viewport[3];
+
+	return screenResolution;
+}
+
+//Sets up viewport for drawing
+void Draw::SetupOrtho()
+{
+	glPushAttrib(GL_ALL_ATTRIB_BITS);
+	glPushMatrix();
+	GLint viewport[4];
+	glGetIntegerv(GL_VIEWPORT, viewport);
+	glViewport(0, 0, viewport[2], viewport[3]);
+	glMatrixMode(GL_PROJECTION);
+	glLoadIdentity();
+	glOrtho(0, viewport[2], viewport[3], 0, -1, 1);
+	glMatrixMode(GL_MODELVIEW);
+	glLoadIdentity();
+	glDisable(GL_DEPTH_TEST);
+}
+
+//Basically does what the name states
+void Draw::RestoreGL()
+{
+	glPopMatrix();
+	glPopAttrib();
+}

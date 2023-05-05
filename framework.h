@@ -4,9 +4,15 @@
 // Arquivos de Cabeçalho do Windows
 #include <windows.h>
 #include <iostream>
+#include <string>
+#include <vector>
+#include <math.h>
+#include <stdio.h>
+#include <gl/GL.h>
 #include "hook.h"
 #include "mem.h"
 #include "offsets.h"
 #include "hack.h"
 #include "config.h"
 #include "init.h"
+#include "drawing.h"

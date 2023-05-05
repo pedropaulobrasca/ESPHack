@@ -12,6 +12,7 @@ namespace Config
 	extern int mag;
 	extern bool bAmmo;
 	extern bool bRecoilSpread;
+	extern bool bESP;
 }
 
 #endif

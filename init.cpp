@@ -1,6 +1,4 @@
 #include "pch.h"
-#include "init.h"
-#include "offsets.h"
 
 //Menu m;
 
@@ -42,8 +40,8 @@ void Init::DoHacks()
 	////Aimbot
 	//doAimbot();
 
-	////ESP
-	//doESP();
+	//ESP
+	doESP();
 
 	////Paperwalls
 	//doPaperwalls();

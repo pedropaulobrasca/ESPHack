@@ -31,6 +31,12 @@
     <Filter Include="Config">
       <UniqueIdentifier>{9d74e6fd-70ba-44f1-9de3-989e0a475fd8}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Drawing">
+      <UniqueIdentifier>{01a26a68-fec6-4f4c-b24a-f3353992bda7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Helpers">
+      <UniqueIdentifier>{4130ef4d-561d-4a75-a3bc-4bf1f76437aa}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="framework.h">
@@ -57,6 +63,12 @@
     <ClInclude Include="config.h">
       <Filter>Config</Filter>
     </ClInclude>
+    <ClInclude Include="drawing.h">
+      <Filter>Drawing</Filter>
+    </ClInclude>
+    <ClInclude Include="helpers.h">
+      <Filter>Helpers</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="dllmain.cpp">
@@ -82,6 +94,12 @@
     </ClCompile>
     <ClCompile Include="config.cpp">
       <Filter>Config</Filter>
+    </ClCompile>
+    <ClCompile Include="drawing.cpp">
+      <Filter>Drawing</Filter>
+    </ClCompile>
+    <ClCompile Include="helpers.cpp">
+      <Filter>Helpers</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

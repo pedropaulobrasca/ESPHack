@@ -10,4 +10,6 @@ void doAmmo();
 
 void doRecoilSpread();
 
+void doESP();
+
 #endif
