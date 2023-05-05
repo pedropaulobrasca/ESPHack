@@ -3,15 +3,7 @@
 #define DRAWING_H
 
 #pragma comment(lib, "OpenGL32.lib")
-
-namespace rgb
-{
-	const GLubyte red[3] = { 255,0,0 };
-	const GLubyte green[3] = { 0,255,0 };
-	const GLubyte gray[3] = { 55,55,55 };
-	const GLubyte lightgray[3] = { 192,192,192 };
-	const GLubyte black[3] = { 0,0,0 };
-}
+#include "Imgui/imgui.h"
 
 namespace Draw
 {
@@ -19,7 +11,7 @@ namespace Draw
 	void SetupOrtho();
 	void RestoreGL();
 
-	void DrawLine(float startx, float starty, float endx, float endy, float lineWidth, const GLubyte color[3], float alpha);
+	void DrawLine(float startx, float starty, float endx, float endy, float lineWidth, ImVec4 color);
 
 	class Font
 	{

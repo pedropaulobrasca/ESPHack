@@ -32,31 +32,38 @@ void doRecoilSpread()
 
 void doESP()
 {
-	if (Config::bESP)
-	{
-		Vector2 screenRes = Draw::GetRes();
+    if (1)
+    {
+		float viewport[4];
+		glGetFloatv(GL_VIEWPORT, viewport);
 
-		for (int i = 0; i < *Offsets::numOfPlayers; i++)
-		{
-			Entity* entity = Offsets::entList->ents[i];
-			if (entity != 0)
-			{
-				try
-				{
+		Draw::SetupOrtho();
+
+        Vector2 screenRes = Draw::GetRes();
+
+        for (int i = 0; i < *Offsets::numOfPlayers; i++)
+        {
+            Entity* entity = Offsets::entList->ents[i];
+            if (entity != 0)
+            {
+                try
+                {
 					Vector3 center = entity->HeadPos;
 					char* name = entity->Name;
 
 					Vector2 screenPos;
 					if (WorldToScreen(center, screenPos, Offsets::vMatix, (int)screenRes.x, (int)screenRes.y))
 					{
-						Draw::DrawLine(screenRes.x / 2, screenRes.y, screenPos.x, screenPos.y, 2.0f, rgb::red, 1.0f);
+						Draw::DrawLine(screenRes.x / 2, screenRes.y, screenPos.x, screenPos.y, 2.0f, rgb::enemyBoxVisible);
 					}
-				}
-				catch (const std::exception&)
-				{
-					std::cout << "Erro no ESP!" << std::endl;
-				}
-			}
-		}
-	}
+                }
+                catch (const std::exception&)
+                {
+                    std::cout << "Erro no ESP!" << std::endl;
+                }
+            }
+        }
+
+		Draw::RestoreGL();
+    }
 }

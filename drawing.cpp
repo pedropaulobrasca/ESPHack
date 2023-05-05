@@ -1,5 +1,6 @@
 #define _USE_MATH_DEFINES
 #include "pch.h"
+#include "Imgui/imgui.h"
 
 class Draw::Font f;
 
@@ -39,9 +40,9 @@ void Draw::RestoreGL()
 	glPopAttrib();
 }
 
-void Draw::DrawLine(float startx, float starty, float endx, float endy, float lineWidth, const GLubyte color[3], float alpha = 1.0f)
+void Draw::DrawLine(float startx, float starty, float endx, float endy, float lineWidth, ImVec4 color)
 {
-	glColor4f(color[0] / 255.0f, color[1] / 255.0f, color[2] / 255.0f, alpha);
+	glColor4f(color.x, color.y, color.z, color.w);
 	glBegin(GL_LINES);
 	glVertex2f(startx, starty);
 	glVertex2f(endx, endy);
