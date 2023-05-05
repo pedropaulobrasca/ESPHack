@@ -38,3 +38,12 @@ void Draw::RestoreGL()
 	glPopMatrix();
 	glPopAttrib();
 }
+
+void Draw::DrawLine(float startx, float starty, float endx, float endy, float lineWidth, const GLubyte color[3], float alpha = 1.0f)
+{
+	glColor4f(color[0] / 255.0f, color[1] / 255.0f, color[2] / 255.0f, alpha);
+	glBegin(GL_LINES);
+	glVertex2f(startx, starty);
+	glVertex2f(endx, endy);
+	glEnd();
+}

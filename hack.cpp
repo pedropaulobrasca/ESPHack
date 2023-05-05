@@ -34,6 +34,6 @@ void doESP()
 {
 	if (Config::bESP)
 	{
-		// Aqui vai toda a logica do ESP
+		Draw::DrawLine(Draw::GetRes().x / 2, Draw::GetRes().y, 3.0f, 3.0f, 2.0f, rgb::red, 1.0f);
 	}
 }
