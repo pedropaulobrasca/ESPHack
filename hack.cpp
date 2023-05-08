@@ -48,13 +48,14 @@ void doESP()
             {
                 try
                 {
-					Vector3 center = entity->HeadPos;
+					Vector3 headPos = entity->HeadPos;
+					Vector3 feetPos = entity->Pos;
 					char* name = entity->Name;
 
-					Vector2 screenPos;
-					if (WorldToScreen(center, screenPos, Offsets::vMatix, (int)screenRes.x, (int)screenRes.y))
+					Vector2 headScreenPos, feetScreenPos;
+					if (WorldToScreen(headPos, headScreenPos, Offsets::vMatix, (int)screenRes.x, (int)screenRes.y) && WorldToScreen(headPos, feetScreenPos, Offsets::vMatix, (int)screenRes.x, (int)screenRes.y))
 					{
-						Draw::DrawLine(screenRes.x / 2, screenRes.y, screenPos.x, screenPos.y, 2.0f, rgb::enemyBoxVisible);
+						Draw::DrawLine(screenRes.x / 2, screenRes.y, feetScreenPos.x, feetScreenPos.y, 2.0f, rgb::enemyBoxVisible);
 					}
                 }
                 catch (const std::exception&)
