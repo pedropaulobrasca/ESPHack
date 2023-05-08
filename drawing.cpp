@@ -2,9 +2,9 @@
 #include "pch.h"
 #include "Imgui/imgui.h"
 
-class Draw::Font f;
+class DrawUtils::Font f;
 
-Vector2 Draw::GetRes()
+Vector2 DrawUtils::GetRes()
 {
 	Vector2 screenResolution;
 
@@ -18,7 +18,7 @@ Vector2 Draw::GetRes()
 }
 
 //Sets up viewport for drawing
-void Draw::SetupOrtho()
+void DrawUtils::SetupOrtho()
 {
 	glPushAttrib(GL_ALL_ATTRIB_BITS);
 	glPushMatrix();
@@ -34,17 +34,30 @@ void Draw::SetupOrtho()
 }
 
 //Basically does what the name states
-void Draw::RestoreGL()
+void DrawUtils::RestoreGL()
 {
 	glPopMatrix();
 	glPopAttrib();
 }
 
-void Draw::DrawLine(float startx, float starty, float endx, float endy, float lineWidth, ImVec4 color)
+void DrawUtils::DrawLine(float startx, float starty, float endx, float endy, float lineWidth, ImVec4 color)
 {
 	glColor4f(color.x, color.y, color.z, color.w);
 	glBegin(GL_LINES);
 	glVertex2f(startx, starty);
 	glVertex2f(endx, endy);
 	glEnd();
+}
+
+void initGLUTBitmapFont() {
+	// Função vazia, pois o GLUT não requer inicialização da fonte bitmap
+}
+
+void DrawUtils::Font::PrintText(const std::string& text, float x, float y, void* font, ImVec4 color) {
+	glColor4f(color.x, color.y, color.z, color.w);
+	glRasterPos2f(x, y);
+
+	for (const auto& c : text) {
+		glutBitmapCharacter(font, c);
+	}
 }

@@ -1,5 +1,7 @@
 #include "pch.h"
 
+DrawUtils::Font font;
+
 void doHealth()
 {
 	if (Config::bHealth)
@@ -37,9 +39,9 @@ void doESP()
 		float viewport[4];
 		glGetFloatv(GL_VIEWPORT, viewport);
 
-		Draw::SetupOrtho();
+		DrawUtils::SetupOrtho();
 
-        Vector2 screenRes = Draw::GetRes();
+        Vector2 screenRes = DrawUtils::GetRes();
 
         for (int i = 0; i < *Offsets::numOfPlayers; i++)
         {
@@ -53,10 +55,27 @@ void doESP()
 					char* name = entity->Name;
 
 					Vector2 headScreenPos, feetScreenPos;
+
+					// Snapline
 					if (WorldToScreen(headPos, headScreenPos, Offsets::vMatix, (int)screenRes.x, (int)screenRes.y) && WorldToScreen(headPos, feetScreenPos, Offsets::vMatix, (int)screenRes.x, (int)screenRes.y))
 					{
-						Draw::DrawLine(screenRes.x / 2, screenRes.y, feetScreenPos.x, feetScreenPos.y, 2.0f, rgb::enemyBoxVisible);
+						float height = feetScreenPos.y - headScreenPos.y; //Get entity height
+						float width = height / 2.0f; //Get entity width
+
+						Vector2 tl; //Top left of box
+						tl.x = headScreenPos.x - width / 2.0f;
+						tl.y = headScreenPos.y;
+						Vector2 br; //Bottom right of box
+						br.x = headScreenPos.x + width / 2.0f;
+						br.y = headScreenPos.y + height;
+
+						// Snapline
+						DrawUtils::DrawLine(screenRes.x / 2, screenRes.y, feetScreenPos.x, feetScreenPos.y, 2.0f, rgb::enemyBoxVisible);
+
+						//Name
+						DrawUtils::Font::PrintText(entity->Name, headScreenPos.x, headScreenPos.y, GLUT_BITMAP_HELVETICA_12, rgb::enemyBoxVisible);
 					}
+
                 }
                 catch (const std::exception&)
                 {
@@ -65,6 +84,6 @@ void doESP()
             }
         }
 
-		Draw::RestoreGL();
+		DrawUtils::RestoreGL();
     }
 }
