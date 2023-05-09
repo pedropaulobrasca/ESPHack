@@ -46,7 +46,7 @@ void doESP()
         for (int i = 0; i < *Offsets::numOfPlayers; i++)
         {
             Entity* entity = Offsets::entList->ents[i];
-            if (entity != 0)
+            if (entity != 0 && entity->Health > 0)
             {
                 try
                 {
@@ -57,7 +57,7 @@ void doESP()
 					Vector2 headScreenPos, feetScreenPos;
 
 					// Snapline
-					if (WorldToScreen(headPos, headScreenPos, Offsets::vMatix, (int)screenRes.x, (int)screenRes.y) && WorldToScreen(headPos, feetScreenPos, Offsets::vMatix, (int)screenRes.x, (int)screenRes.y))
+					if (WorldToScreen(headPos, headScreenPos, Offsets::vMatix, (int)screenRes.x, (int)screenRes.y) && WorldToScreen(feetPos, feetScreenPos, Offsets::vMatix, (int)screenRes.x, (int)screenRes.y))
 					{
 						float height = feetScreenPos.y - headScreenPos.y; //Get entity height
 						float width = height / 2.0f; //Get entity width
@@ -70,10 +70,13 @@ void doESP()
 						br.y = headScreenPos.y + height;
 
 						// Snapline
-						DrawUtils::DrawLine(screenRes.x / 2, screenRes.y, feetScreenPos.x, feetScreenPos.y, 2.0f, rgb::enemyBoxVisible);
+						DrawUtils::DrawLine(screenRes.x / 2, screenRes.y, feetScreenPos.x, feetScreenPos.y, 1.0f, rgb::enemyBoxVisible);
 
-						//Name
-						DrawUtils::Font::PrintText(entity->Name, headScreenPos.x, headScreenPos.y, GLUT_BITMAP_HELVETICA_12, rgb::enemyBoxVisible);
+						// Name
+						DrawUtils::Font::PrintText(entity->Name, tl.x, headScreenPos.y - 10.0f, GLUT_BITMAP_HELVETICA_12, rgb::enemyBoxVisible);
+
+						// Rectangle
+						DrawUtils::DrawRectangle(tl.x, tl.y, br.x, br.y, rgb::enemyBoxVisible, 1.0f);
 					}
 
                 }

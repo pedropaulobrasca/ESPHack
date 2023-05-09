@@ -4,6 +4,7 @@
 // Arquivos de Cabeçalho do Windows
 #include <windows.h>
 #include <iostream>
+#include <sstream>
 #include <string>
 #include <vector>
 #include <math.h>

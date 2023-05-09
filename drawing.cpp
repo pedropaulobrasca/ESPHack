@@ -61,3 +61,14 @@ void DrawUtils::Font::PrintText(const std::string& text, float x, float y, void*
 		glutBitmapCharacter(font, c);
 	}
 }
+
+void DrawUtils::DrawRectangle(float x, float y, float width, float height, ImVec4 color, float lineWidth) {
+	glLineWidth(lineWidth);
+	glColor4f(color.x, color.y, color.z, color.w);
+	glBegin(GL_LINE_LOOP);
+	glVertex2f(x, y);
+	glVertex2f(width, y);
+	glVertex2f(width, height);
+	glVertex2f(x, height);
+	glEnd();
+}
