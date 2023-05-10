@@ -79,14 +79,13 @@ void doESP()
 						DrawUtils::DrawRectangle(tl.x, tl.y, br.x, br.y, rgb::enemyBoxVisible, 1.0f);
 
 						// Health
-						//Constrains the healthbar to not go past a certain position while scaling
 						float x = width / 8.0f;
 						if (x < 3.5)
 						{
 							x = 3.5;
 						}
 
-						//Background(Red part)
+						// Health Background
 						Vector2 healthB;
 						healthB.x = br.x + x;
 						healthB.y = br.y;
@@ -96,7 +95,7 @@ void doESP()
 
 						DrawUtils::DrawLine(healthB.x, healthB.y, healthT.x, healthT.y, 5, rgb::healthBarBackground);
 
-						//Actual health(Green part)
+						// Actual Health
 						float healthBarHeight = healthT.y - healthB.y;
 						float health = entity->Health * healthBarHeight / 100;
 						Vector2 healthA;
