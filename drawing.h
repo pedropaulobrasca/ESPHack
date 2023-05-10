@@ -13,6 +13,7 @@ namespace DrawUtils
 
     void DrawLine(float startx, float starty, float endx, float endy, float lineWidth, ImVec4 color);
     void DrawRectangle(float x, float y, float width, float height, ImVec4 color, float lineWidth);
+    void DrawFilledRect(float x, float y, float x2, float y2, ImVec4 color);
 
     class Font
     {

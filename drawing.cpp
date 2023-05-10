@@ -72,3 +72,14 @@ void DrawUtils::DrawRectangle(float x, float y, float width, float height, ImVec
 	glVertex2f(x, height);
 	glEnd();
 }
+
+void DrawUtils::DrawFilledRect(float x, float y, float x2, float y2, ImVec4 color)
+{
+	glColor4f(color.x, color.y, color.z, color.w);
+	glBegin(GL_QUADS);
+	glVertex2f(x, y);
+	glVertex2f(x2, y);
+	glVertex2f(x2, y2);
+	glVertex2f(x, y2);
+	glEnd();
+}
