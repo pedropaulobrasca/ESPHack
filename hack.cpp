@@ -102,6 +102,9 @@ void doESP()
 						healthA.y = healthB.y + health;
 
 						DrawUtils::DrawLine(healthB.x, healthB.y, healthT.x, healthA.y, 5, rgb::healthBar);
+
+						// Crosshair
+						DrawUtils::DrawCrosshair(12.0f, 12.0f, rgb::enemyBoxVisible);
 					}
 
                 }

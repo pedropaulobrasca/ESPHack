@@ -83,3 +83,13 @@ void DrawUtils::DrawFilledRect(float x, float y, float x2, float y2, ImVec4 colo
 	glVertex2f(x, y2);
 	glEnd();
 }
+
+void DrawUtils::DrawCrosshair(float size, float lineWidth, ImVec4 color)
+{
+	Vector2 res = DrawUtils::GetRes();
+	float midX = res.x / 2;
+	float midY = res.y / 2;
+	DrawUtils::DrawLine(midX - size, midY, midX + size, midY, lineWidth, color);
+	DrawUtils::DrawLine(midX, midY - size, midX, midY + size, lineWidth, color);
+}
+
