@@ -105,6 +105,13 @@ void doESP()
 
 						// Crosshair
 						DrawUtils::DrawCrosshair(12.0f, 12.0f, rgb::enemyBoxVisible);
+
+						// Distance
+						Vector3 playerPos = Offsets::localPlayer->Pos;
+						float rawDistance = Distance(playerPos, entity->Pos);
+						int roundedDistance = std::round(rawDistance);
+						std::string distanceText = std::to_string(roundedDistance) + "m";
+						DrawUtils::Font::PrintText(distanceText, tl.x, headScreenPos.y - 25.0f, GLUT_BITMAP_HELVETICA_12, rgb::enemyBoxVisible);
 					}
 
                 }

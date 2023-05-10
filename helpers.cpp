@@ -24,3 +24,10 @@ bool WorldToScreen(Vector3 pos, Vector2& screen, glMatrix* matrix, int windowWid
 	screen.y = -(windowHeight / 2 * NDC.y) + (NDC.y + windowHeight / 2);
 	return true;
 }
+
+float Distance(const Vector3& a, const Vector3& b) {
+	float dx = a.x - b.x;
+	float dy = a.y - b.y;
+	float dz = a.z - b.z;
+	return std::sqrt(dx * dx + dy * dy + dz * dz);
+}
